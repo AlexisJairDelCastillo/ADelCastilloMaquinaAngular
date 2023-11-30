@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <br>
+
+  <div class="row">
+    <h1 style="text-align: center;"><strong>MAQUINA DE ALIMENTOS</strong></h1>
+
+    <hr>
+
+    <h5><strong>¡¡Bienvenido!!</strong></h5>
+    <h5>Puedes elegir entre estos productos. Elige tu favorito  :)</h5>
+    <li>El producto A tiene un costo de $270.</li>
+    <li>El producto B tiene un costo de $340.</li>
+    <li>El producto C tiene un costo de $390.</li>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label for="nombre">Ingresa tu nombre completo:</label>
+        <input type="text" id="nombre" class="form-control" [(ngModel)]="nombre" />
+    </div>
+
+    <div class="col-md-4">
+      <label for="producto">Elige un producto (A, B, C):</label>
+      <input type="text" id="producto" class="form-control" [(ngModel)]="producto" />
+    </div>
+
+    <div class="col-md-4">
+      <label for="monto">Introduce el dinero:</label>
+        <input type="text" id="monto" class="form-control" [(ngModel)]="montoIngresado" />
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-5">
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-primary" (click)="realizarCompra()">Realizar Compra</button>
+    </div>
+
+    <div class="col-md-5">
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="maquinaService.compras.length > 0">
+      <h2 style="text-align: center">---Resumen de Compras---</h2>
+      <table class="table table-dark table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Monto Ingresado $</th>
+            <th scope="col">Precio $</th>
+            <th scope="col">Cambio $</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let compra of maquinaService.compras">
+            <td>{{ compra.nombre }}</td>
+            <td>{{ compra.producto }}</td>
+            <td>{{ compra.montoIngresado }}</td>
+            <td>{{ compra.precio }}</td>
+            <td>{{ compra.cambio.join(', ') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
